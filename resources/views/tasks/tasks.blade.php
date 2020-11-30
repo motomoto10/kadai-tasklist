@@ -5,11 +5,12 @@
                 <div class="media-body">
                     <div>
                         {{-- 投稿の所有者のユーザ詳細ページへのリンク --}}
-                        {!! link_to_route('users.show', $task->user->name, ['user' => $task->user->id]) !!}
+                        <span>{{ $task->user->name }}</span>
                         <span class="text-muted">posted at {{ $task->created_at }}</span>
                     </div>
                     <div>
                         {{-- 投稿内容 --}}
+                        <span class="text-body">id:{{ $task->id }}のタスク</span>
                         <table class="table table-striped">
                             <thead>
                                 <tr>
@@ -27,10 +28,18 @@
                     </div>
                     <div>
                         @if (Auth::id() == $task->user_id)
-                            {{-- 投稿削除ボタンのフォーム --}}
-                            {!! Form::open(['route' => ['tasks.destroy', $task->id], 'method' => 'delete']) !!}
-                                {!! Form::submit('Delete', ['class' => 'btn btn-danger btn-sm']) !!}
-                            {!! Form::close() !!}
+                            <div class="btn-toolbar">
+                                {{-- 投稿削除ボタンのフォーム --}}
+                                <div class="btn-group">
+                                    {!! Form::open(['route' => ['tasks.destroy', $task->id], 'method' => 'delete']) !!}
+                                        {!! Form::submit('Delete', ['class' => 'btn btn-danger btn-sm']) !!}
+                                    {!! Form::close() !!}
+                                </div>
+                                {{-- 投稿編集ボタン--}}
+                                <div class="btn-group">
+                                    {!! link_to_route('tasks.edit', 'edit', ['task' => $task->id], ['class' => 'btn btn-sm btn-secondary']) !!}
+                                </div>
+                            </div>
                         @endif
                     </div>
                 </div>
