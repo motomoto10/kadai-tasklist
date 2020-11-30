@@ -19,11 +19,15 @@
     </tr>
 </table>
 
-
-{!! link_to_route('tasks.edit','このタスクを編集',['task' => $task->id],['class' => 'btn btn-light']) !!}
-
-{!! Form::model($task,['route' => ['tasks.destroy',$task->id],'method' => 'delete']) !!}
-    {!! Form::submit('削除',['class' => 'btn btn-danger']) !!}
-{!! Form::close() !!}
+<div>
+    @if (Auth::id() == $task->user_id)
+        {{-- 投稿削除ボタンのフォーム --}}
+        {!! Form::open(['route' => ['tasks.destroy', $task->id], 'method' => 'delete']) !!}
+            {!! Form::submit('Delete', ['class' => 'btn btn-danger btn-sm']) !!}
+        {!! Form::close() !!}
+    @endif
+    {{-- 投稿一覧 --}}
+    @include('tasks.tasks')
+</div>
 
 @endsection
