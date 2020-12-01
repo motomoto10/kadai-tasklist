@@ -37,7 +37,9 @@
                                 </div>
                                 {{-- 投稿編集ボタン--}}
                                 <div class="btn-group">
-                                    {!! link_to_route('tasks.edit', 'edit', ['task' => $task->id], ['class' => 'btn btn-sm btn-secondary']) !!}
+                                    {!! Form::open(['route' => ['tasks.edit', $task->id], 'method' => 'get']) !!}
+                                        {!! Form::submit('Edit', ['class' => 'btn btn-secondary btn-sm']) !!}
+                                    {!! Form::close() !!}
                                 </div>
                             </div>
                         @endif
