@@ -12,7 +12,8 @@
             <ul class="navbar-nav">
                 @if (Auth::check())
                     {{-- ユーザ一覧ページへのリンク --}}
-                    <li class="nav-item">{!! link_to_route('logout.get', 'Logout',[],['class' => 'nav-link']) !!}</li>
+                    <li class="nav-item">{!! link_to_route('users.index', 'Users',[],['class' => 'nav-link']) !!}</li>
+                    <li class="nav-item dropdown"></li>
             </ul>
                 @else
                     {{--　ユーザー登録ページへのリンク --}}

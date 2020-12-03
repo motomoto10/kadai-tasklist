@@ -74,16 +74,18 @@ class TasksController extends Controller
      */
     public function show($id)
     {
-        $user = User::findOrFail($id);
         
-        $user->loadRelationshipCounts();
+        if(\Auth::id()=== $task->user_id){
         
-        $tasks = $user->tasks()->orderBy('created_at','desc')->paginate(10);
+        $task = Task::findOrFail($id);
+
+        // 詳細ビューでそれを表示
+        return view('tasks.show', [
+            'task' => $task,
+        ]);
+        }
         
-        return view('tasks.show',[
-                'user' => $user,
-                'task' => $task,
-            ]);
+        return redirect('/');
     }
 
     /**
@@ -94,11 +96,16 @@ class TasksController extends Controller
      */
     public function edit($id)
     {
+        
+        if(\Auth::id()=== $task->user_id){
+            
         $task = Task::findOrFail($id);
         
-        return view('tasks.edit',[
+            return view('tasks.edit',[
             'task' => $task,
-        ]);
+            ]);
+        }
+        return redirect('/');
     }
 
     /**

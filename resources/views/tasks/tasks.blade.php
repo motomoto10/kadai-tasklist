@@ -3,28 +3,16 @@
         @foreach ($tasks as $task)
             <li class="media mb-3">
                 <div class="media-body">
-                    <div>
+                     <div>
                         {{-- 投稿の所有者のユーザ詳細ページへのリンク --}}
-                        <span>{{ $task->user->name }}</span>
+                        {!! link_to_route('users.show', $task->user->name, ['user' => $task->user->id]) !!}
                         <span class="text-muted">posted at {{ $task->created_at }}</span>
                     </div>
                     <div>
                         {{-- 投稿内容 --}}
-                        <span class="text-body">id:{{ $task->id }}のタスク</span>
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th>status</th>
-                                    <th>task</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>{!! nl2br(e($task->status)) !!}</td>
-                                    <td>{!! nl2br(e($task->content)) !!}</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        {!! link_to_route('tasks.show', $task->id, ['task' => $task->id]) !!}
+                        <p>{!! nl2br(e($task->status)) !!}</p>
+                        <p>{!! nl2br(e($task->content)) !!}</p>
                     </div>
                     <div>
                         @if (Auth::id() == $task->user_id)
