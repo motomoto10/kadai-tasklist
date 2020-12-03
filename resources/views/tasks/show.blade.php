@@ -26,8 +26,6 @@
             {!! Form::submit('Delete', ['class' => 'btn btn-danger btn-sm']) !!}
         {!! Form::close() !!}
     @endif
-    {{-- 投稿一覧 --}}
-    @include('tasks.tasks')
 </div>
 
 @endsection
