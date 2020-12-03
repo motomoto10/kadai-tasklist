@@ -13,7 +13,11 @@
                 @if (Auth::check())
                     {{-- メッセージ作成ページへのリンク --}}
                     <li class="nav-item">{!! link_to_route('tasks.create', '新規タスクの投稿', [], ['class' => 'nav-link']) !!}</li>
-            
+                        {{-- ユーザ詳細ページへのリンク --}}
+                        <li class="nav-item">{!! link_to_route('users.show','My profile',['user' => Auth::id()],['class' => 'nav-link'])  !!} </li>
+                        {{-- ログアウトへのリンク --}}
+                        <li class="nav-item">{!! link_to_route('logout.get', 'Logout', [], ['class' => 'nav-link']) !!}</li>
+            </ul>
                 @else
                     {{--　ユーザー登録ページへのリンク --}}
                     <li class="nav-item">{!! link_to_route('signup.get','Signup',[],['class' => 'nav-link']) !!}</li>
