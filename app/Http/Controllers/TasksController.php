@@ -102,6 +102,7 @@ class TasksController extends Controller
             'task' => $task,
             ]);
         }
+        
         return redirect('/');
     }
 
@@ -128,9 +129,10 @@ class TasksController extends Controller
             $task->save();
         
             return redirect('/');
-        }else{
-            return redirect('/');
         }
+    
+        return redirect('/');
+        
 
     }
 
@@ -146,8 +148,11 @@ class TasksController extends Controller
         
         if(\Auth::id()=== $task->user_id){
             $task->delete();
+            
+        return redirect('/');
+        
         }
         
-        return back();
+        return redirect('/');
     }
 }
